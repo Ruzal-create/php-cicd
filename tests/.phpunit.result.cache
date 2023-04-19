@@ -1,0 +1,1 @@
+{"version":1,"defects":{"AdditionTest::testAdd":4,"UserTest::testInsertUser":4,"Warning":6,"UserTest::testShowUsers":4,"UserTest::testListUsers":4,"UserTest::testAdd":4},"times":{"AdditionTest::testAdd":0.064,"UserTest::testInsertUser":60.155,"Warning":0.003,"UserTest::testShowUsers":60.198,"UserTest::testListUsers":60.067,"UserTest::testAdd":0.003}}
