@@ -21,7 +21,7 @@
     // Get the IP address of the client
 
     // Display the IP address
-
+    //test
     function add($num1, $num2) {
         return $num1 + $num2;
     }
