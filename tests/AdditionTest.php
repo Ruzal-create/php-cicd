@@ -58,7 +58,7 @@ class AdditionTest extends TestCase
 {
     public function testAddition()
     {
-        require_once('addition.php');
+        require_once('index.php');
 
         $this->assertEquals(4, add(2, 2));
         $this->assertEquals(10, add(5, 5));
