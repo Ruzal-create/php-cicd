@@ -54,7 +54,7 @@
 // }
 use PHPUnit\Framework\TestCase;
 
-class MathTest extends TestCase
+class AdditionTest extends TestCase
 {
     private $math;
 
