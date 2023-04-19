@@ -54,15 +54,25 @@
 // }
 use PHPUnit\Framework\TestCase;
 
-class AdditionTest extends TestCase
+class MathTest extends TestCase
 {
-    public function testAddition()
-    {
-        require_once('index.php');
+    private $math;
 
-        $this->assertEquals(4, add(2, 2));
-        $this->assertEquals(10, add(5, 5));
-        $this->assertEquals(0, add(-5, 5));
+    protected function setUp(): void
+    {
+        $this->math = new Math();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->math = null;
+    }
+
+    public function testAdd()
+    {
+        $this->assertEquals(4, $this->math->add(2, 2));
+        $this->assertEquals(8, $this->math->add(5, 3));
+        $this->assertEquals(0, $this->math->add(-2, 2));
+        $this->assertEquals(-10, $this->math->add(-7, -3));
     }
 }
-?>
