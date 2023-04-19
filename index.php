@@ -5,6 +5,9 @@
 </head>
 <body>
 <?php
+        function add($num1, $num2) {
+            return $num1 + $num2;
+        }
         $ip_address = $_SERVER['SERVER_ADDR'];
         ?>
         <p>IP Address: <?php echo $ip_address; ?></p>
@@ -22,9 +25,6 @@
 
     // Display the IP address
     //test
-    function add($num1, $num2) {
-        return $num1 + $num2;
-    }
     $servername = "terraform-20230418095938731800000003.c58l01rn1yea.us-east-2.rds.amazonaws.com";
     $username = "terraform";
     $password = "mysql123";
