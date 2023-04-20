@@ -10,7 +10,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
@@ -34,17 +34,6 @@ jobs:
 
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
-      
-    - name: SSH into EC2 instance
-      uses: appleboy/ssh-action@master
-      with:
-          host: 18.207.118.108
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /var/www/html
-            git pull
-            sudo systemctl restart apache2
       
 #     - name: Run php file
 #       run: sudo systemctl start apache2
