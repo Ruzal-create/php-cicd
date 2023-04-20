@@ -30,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+    # Add a test script to composer.json, for instance:  "test": "vendor/bin/phpunit"
 
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
