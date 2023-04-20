@@ -1,67 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Insert user</title>
+	<title>Addition Form</title>
 </head>
 <body>
-<?php
-        function add($num1, $num2) {
-            return $num1 + $num2;
-        }
-        $ip_address = $_SERVER['SERVER_ADDR'];
-        ?>
-        <p>IP Address: <?php echo $ip_address; ?></p>
 
-    <h1>Insert User Details</h1>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        Name: <input type="text" name="name"><br>
-        Email: <input type="email" name="email"><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+		<label for="num1">Number 1:</label>
+		<input type="number" id="num1" name="num1" required><br><br>
 
-    <?php
-    // Database connection
-    // Get the IP address of the client
+		<label for="num2">Number 2:</label>
+		<input type="number" id="num2" name="num2" required><br><br>
 
-    // Display the IP address
-    //test
-    $servername = "terraform-20230418095938731800000003.c58l01rn1yea.us-east-2.rds.amazonaws.com";
-    $username = "terraform";
-    $password = "mysql123";
-    $dbname = "mydb";
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+		<input type="submit" value="Add">
+	</form>
 
-    // Insert user
-    if (isset($_POST['submit'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-        if (mysqli_query($conn, $sql)) {
-            echo "User inserted successfully!";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
-    }
+	<?php 
+		function add($num1, $num2) {
+			return $num1 + $num2;
+		}
 
-    // Show users
-    $sql = "SELECT * FROM users";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        echo "<h1>Users</h1>";
-        echo "<table>";
-        echo "<tr><th>Name</th><th>Email</th></tr>";
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<tr><td>" . $row["name"]. "</td><td>" . $row["email"]. "</td></tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "No users found.";
-    }
+		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+			$num1 = $_POST["num1"];
+			$num2 = $_POST["num2"];
+			$sum = add($num1, $num2);
+			echo "The sum of $num1 and $num2 is: $sum";
+		}
+	?>
 
-    mysqli_close($conn);
-    ?>
 </body>
 </html>
+
