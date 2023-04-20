@@ -34,3 +34,12 @@ jobs:
 
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
+      
+    - name: Copy code to EC2
+      run: scp -r ./ 18.207.118.108:~/var/www/html
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+      
+    - name: Run php file
+      run: sudo systemctl start apache2
