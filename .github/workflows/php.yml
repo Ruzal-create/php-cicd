@@ -35,23 +35,40 @@ jobs:
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
     
-  Deploy:
-    name: Deploy to EC2
-    runs-on: ubuntu-latest
+#   Deploy:
+#     name: Deploy to EC2
+#     runs-on: ubuntu-latest
     
+#     steps:
+#       - uses: actions/checkout@v2 
+#       - name: Build & Deploy
+#         env:
+#             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#             HOSTNAME: 174.129.59.126
+#             USER_NAME: ubuntu
+#         run: |
+#           << EOF
+#           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+#           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+#           EOF
+#               # Now we have got the access of EC2 and we will start the deploy .
+#               sudo mkdir myfolder
+  deploy:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2 
-      - name: Build & Deploy
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            HOSTNAME: 174.129.59.126
-            USER_NAME: ubuntu
-        run: |
-          << EOF
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          EOF
-              # Now we have got the access of EC2 and we will start the deploy .
-              sudo mkdir myfolder
-#     - name: Run php file
-#       run: sudo systemctl start apache2
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH key
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+    - name: Connect to EC2 instance and create directory
+      uses: appleboy/ssh-action@master
+      with:
+        host: 174.129.59.126
+        username: ubuntu
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          mkdir ~/hello
