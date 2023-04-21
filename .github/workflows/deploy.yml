@@ -1,0 +1,35 @@
+name: PHP Composer
+
+on:
+  pull:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+#     - name: Set up SSH key
+#       run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+    - name: Connect to EC2 instance and create directory
+      uses: appleboy/ssh-action@master
+      with:
+        host: 54.173.252.66
+        username: ubuntu
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          sudo apt-get update
+          sudo apt-get install -y apache2
+          sudo rm -rf /var/www/html/*
+          cd /var/www/html
+          sudo git init
+          sudo git remote add origin https://github.com/Ruzal-create/php-cicd.git
+          sudo git pull origin main
