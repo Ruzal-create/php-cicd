@@ -34,9 +34,6 @@ jobs:
 
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
-      
-    - name: Install SSH key
-      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
     
   Deploy:
     name: Deploy to EC2
