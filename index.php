@@ -4,7 +4,7 @@
 	<title><h1>Addition Form(Wrong)</h1></title>
 </head>
 <body>
-
+	<h1>Add</h1>
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		<label for="num1">Number 1:</label>
 		<input type="number" id="num1" name="num1" required><br><br>
@@ -17,7 +17,7 @@
 
 	<?php 
 		function add($num1, $num2) {
-			return $num1 - $num2;
+			return $num1 + $num2;
 		}
 
 		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
