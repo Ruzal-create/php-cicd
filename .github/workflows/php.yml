@@ -66,7 +66,7 @@ jobs:
     - name: Connect to EC2 instance and create directory
       uses: appleboy/ssh-action@master
       with:
-        host: 174.129.59.126
+        host: 54.173.252.66
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
@@ -74,5 +74,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y apache2
           sudo rm -rf /var/www/html/*
-          sudo cp -r $GITHUB_WORKSPACE/* /var/www/html/
-          sudo systemctl restart apache2
+          git init
+          git remote add origin https://github.com/Ruzal-create/php-cicd.git
+          git pull origin main
