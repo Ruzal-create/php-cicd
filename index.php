@@ -12,7 +12,7 @@
 		<label for="num2">Number 2:</label>
 		<input type="number" id="num2" name="num2" required><br><br>
 
-		<input type="submit" value="Add">
+		<input type="submit" value="Add" method="POST">
 	</form>
 
 	<?php 
