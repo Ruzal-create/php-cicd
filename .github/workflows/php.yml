@@ -35,5 +35,12 @@ jobs:
     - name: Run test suite
       run: ./vendor/bin/phpunit tests/UserTest.php
       
+    - name: Install SSH key
+      run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+    
+    - name: Deploy code to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@174.129.59.126 "cd /var/www/html && sudo git pull"
+    
 #     - name: Run php file
 #       run: sudo systemctl start apache2
