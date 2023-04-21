@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Addition Form</title>
+	<title>Addition Form(Wrong)</title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 	<?php 
 		function add($num1, $num2) {
-			return $num1 + $num2;
+			return $num1 - $num2;
 		}
 
 		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
