@@ -21,7 +21,7 @@ jobs:
     - name: Connect to EC2 instance and create directory
       uses: appleboy/ssh-action@master
       with:
-        host: 54.173.252.66
+        host: 52.90.105.239
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
