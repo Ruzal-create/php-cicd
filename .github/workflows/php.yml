@@ -38,9 +38,22 @@ jobs:
     - name: Install SSH key
       run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
     
-    - name: Deploy code to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@174.129.59.126 "cd /var/www/html && sudo git pull"
+  Deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
     
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Build & Deploy
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            HOSTNAME: 174.129.59.126
+            USER_NAME: ec2-user
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+              # Now we have got the access of EC2 and we will start the deploy .
+              mkdir myfolder
 #     - name: Run php file
 #       run: sudo systemctl start apache2
