@@ -74,6 +74,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y apache2
           sudo rm -rf /var/www/html/*
-          git init
-          git remote add origin https://github.com/Ruzal-create/php-cicd.git
-          git pull origin main
+          sudo git init
+          sudo git remote add origin https://github.com/Ruzal-create/php-cicd.git
+          sudo git pull origin main
