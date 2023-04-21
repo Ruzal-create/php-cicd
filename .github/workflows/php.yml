@@ -71,4 +71,8 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          mkdir ~/hello
+          sudo apt-get update
+          sudo apt-get install -y apache2
+          sudo rm -rf /var/www/html/*
+          sudo cp -r $GITHUB_WORKSPACE/* /var/www/html/
+          sudo systemctl restart apache2
