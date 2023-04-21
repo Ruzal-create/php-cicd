@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Addition Form(Wrong)</title>
+	<title><h1>Addition Form(Wrong)</h1></title>
 </head>
 <body>
 
