@@ -26,10 +26,11 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          sudo apt-get update
-          sudo apt-get install -y apache2
-          sudo rm -rf /var/www/html/*
-          cd /var/www/html
-          sudo git init
-          sudo git remote add origin https://github.com/Ruzal-create/php-cicd.git
           sudo git pull origin main
+          
+#   sudo apt-get update
+#           sudo apt-get install -y apache2
+#           sudo rm -rf /var/www/html/*
+#           cd /var/www/html
+#           sudo git init
+#           sudo git remote add origin https://github.com/Ruzal-create/php-cicd.git
